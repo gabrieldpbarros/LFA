@@ -4,3 +4,7 @@ Bibliografia/
 # Executáveis auxiliares
 *.jar
 *.sh
+Projetos/Códigos/*
+# Exceções
+!Projetos/Códigos/*.c
+!Projetos/Códigos/*.txt
