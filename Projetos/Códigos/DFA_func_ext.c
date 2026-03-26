@@ -119,23 +119,27 @@ int main(int argc, char *argv[]){
         FILE *fp;
 
         for (int i = 1; i < argc; i++) {
-            fp = fopen(argv[i], "r");
-            // Leitura
-            dfa = recebe_DFA(buffer, &inicial, &finais, &qtd_estados, &qtd_finais, fp);
-            //imprime_matriz(dfa, qtd_estados);
-            int index = 1;
-            while (true) {
-                func_ext = recebe_string(buffer, &tamanho_func, fp);
-                if (!func_ext) break;
-                // Validação
-                else valida_funcao(dfa, func_ext, finais, inicial, qtd_finais, tamanho_func, index++);
-                free(func_ext);
+            if ((fp = fopen(argv[i], "r")) == NULL) {
+                printf("ERRO: O arquivo %s nao existe\n", argv[i]);
+                return 1;
+            } else {
+                // Leitura
+                dfa = recebe_DFA(buffer, &inicial, &finais, &qtd_estados, &qtd_finais, fp);
+                //imprime_matriz(dfa, qtd_estados);
+                int index = 1;
+                while (true) {
+                    func_ext = recebe_string(buffer, &tamanho_func, fp);
+                    if (!func_ext) break;
+                    // Validação
+                    else valida_funcao(dfa, func_ext, finais, inicial, qtd_finais, tamanho_func, index++);
+                    free(func_ext);
+                }
+                // Liberação das alocações dinâmicas
+                libera_matriz(dfa, qtd_estados);
+                free(finais);
+                // Fechamento do arquivo
+                fclose(fp);
             }
-            // Liberação das alocações dinâmicas
-            libera_matriz(dfa, qtd_estados);
-            free(finais);
-            // Fechamento do arquivo
-            fclose(fp);
         }
 
         return 0;
