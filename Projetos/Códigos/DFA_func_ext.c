@@ -134,6 +134,8 @@ int main(int argc, char *argv[]){
             // Liberação das alocações dinâmicas
             libera_matriz(dfa, qtd_estados);
             free(finais);
+            // Fechamento do arquivo
+            fclose(fp);
         }
 
         return 0;
