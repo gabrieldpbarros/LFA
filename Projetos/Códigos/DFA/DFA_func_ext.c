@@ -103,7 +103,7 @@ void libera_matriz(int** matrix, int qtd_linhas){
 int main(int argc, char *argv[]){
     if (argc < 2) {
         // Instruções para o usuário
-        printf("Se voce esta vendo esta mensagem, significa que não executou o programa corretamente.\n");
+        printf("Se voce esta vendo esta mensagem, significa que nao executou o programa corretamente.\n");
         printf("Ao executar pelo terminal, adicione o nome de um arquivo .txt que contenha o automato na primeira linha e as strings nas linhas subseguintes.\n");
         printf("INSTRUCOES\n");
         printf("Escreva o DFA seguindo o seguinte formato: <ESTADO INICIAL><ESTADOS FINAIS>-<TRANSICOES>\n");
